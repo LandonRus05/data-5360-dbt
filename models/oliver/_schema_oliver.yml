@@ -15,3 +15,13 @@ models:
     description: "Oliver's Sales Fact (order line grain)"
   - name: sales
     description: "Semantic layer for sales analysis"
+  - name: stg_employee_certifications
+    description: |
+      Staging model for employee certifications.
+      Parses certification_json into certification_name, certification_cost, and certification_awarded_date.
+      Each record represents one certification earned by an employee.
+  - name: fact_certification
+    description: |
+      Employee Certification Fact.
+      The grain of this table is employee + certification + date awarded.
+      Each record represents one certification an employee received on a given date.
