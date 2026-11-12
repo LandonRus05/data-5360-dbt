@@ -9,10 +9,23 @@ models:
     description: "Oliver's Employee Dimension"
   - name: oliver_dim_product
     description: "Oliver's Product Dimension"
+    columns:
+      - name: product_key
+        tests:
+          - unique
   - name: oliver_dim_store
     description: "Oliver's Store Dimension"
   - name: fact_sales
     description: "Oliver's Sales Fact (order line grain)"
+    columns:
+      - name: cust_key
+        tests:
+          - not_null
+      - name: product_key
+        tests:
+          - relationships:
+              to: ref('oliver_dim_product')
+              field: product_key
   - name: sales
     description: "Semantic layer for sales analysis"
   - name: stg_employee_certifications
@@ -20,6 +33,20 @@ models:
       Staging model for employee certifications.
       Parses certification_json into certification_name, certification_cost, and certification_awarded_date.
       Each record represents one certification earned by an employee.
+        columns:
+      - name: certification_name
+        tests:
+          - accepted_values:
+              values:
+                - "Cash Handling and Security"
+                - "Conflict Resolution"
+                - "Customer Service Excellence"
+                - "Inventory Management"
+                - "Leadership and Coaching"
+                - "Point of Sale Operations"
+                - "Product Knowledge Level 2"
+                - "Strategic Retail Operations"
+                - "Workplace Safety"
   - name: fact_certification
     description: |
       Employee Certification Fact.
