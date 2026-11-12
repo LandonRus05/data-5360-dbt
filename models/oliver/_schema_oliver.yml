@@ -23,9 +23,10 @@ models:
           - not_null
       - name: product_key
         tests:
-          - relationships:
-              to: ref('oliver_dim_product')
-              field: product_key
+         - relationships:
+              arguments:
+                to: ref('oliver_dim_product')
+                field: product_key
   - name: sales
     description: "Semantic layer for sales analysis"
   - name: stg_employee_certifications
@@ -37,8 +38,9 @@ models:
       - name: certification_name
         tests:
           - accepted_values:
-              values:
-                - "Cash Handling and Security"
+              arguments:
+                values:
+                  - "Cash Handling and Security"
                 - "Conflict Resolution"
                 - "Customer Service Excellence"
                 - "Inventory Management"
