@@ -23,7 +23,7 @@ models:
           - not_null
       - name: product_key
         tests:
-         - relationships:
+          - relationships:
               arguments:
                 to: ref('oliver_dim_product')
                 field: product_key
@@ -34,21 +34,21 @@ models:
       Staging model for employee certifications.
       Parses certification_json into certification_name, certification_cost, and certification_awarded_date.
       Each record represents one certification earned by an employee.
-        columns:
+    columns:
       - name: certification_name
         tests:
           - accepted_values:
               arguments:
                 values:
                   - "Cash Handling and Security"
-                - "Conflict Resolution"
-                - "Customer Service Excellence"
-                - "Inventory Management"
-                - "Leadership and Coaching"
-                - "Point of Sale Operations"
-                - "Product Knowledge Level 2"
-                - "Strategic Retail Operations"
-                - "Workplace Safety"
+                  - "Conflict Resolution"
+                  - "Customer Service Excellence"
+                  - "Inventory Management"
+                  - "Leadership and Coaching"
+                  - "Point of Sale Operations"
+                  - "Product Knowledge Level 2"
+                  - "Strategic Retail Operations"
+                  - "Workplace Safety"
   - name: fact_certification
     description: |
       Employee Certification Fact.
